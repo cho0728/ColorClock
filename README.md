@@ -1,4 +1,5 @@
-#ColorClock
+#ColorClock  
+**[Demo](https://colorclock.herokuapp.com/)**
 ==========
 ![ColorClock](ColorClock.png)  
 
