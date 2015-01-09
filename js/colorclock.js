@@ -1,6 +1,6 @@
 $(function(){
     var h,m,s;
-    var note=['IT WILL ROCK','GOT IT','COPIED'];
+    var note=['IT\'LL ROCK','GOT IT','COPIED','PASTE ME'];
     var client = new ZeroClipboard($(".hex"));
     var client1 = new ZeroClipboard($(".rgb"));
 
@@ -20,6 +20,25 @@ $(function(){
         copied();
     });
 
+    $(document).on("mousemove",function(event){
+        $(".fullscreen").css("visibility","visible");
+        setTimeout(function(){
+            if(!($(".fullscreen").is(":hover"))){
+                $(".fullscreen").css("visibility","hidden");
+            }            
+        },500)
+    });
+
+    $(".fullscreen").on("click",function(event){
+        if(document.webkitIsFullScreen || document.fullScreen || document.mozfullScreen){
+            $(this).removeClass("fullscreened");
+            exitFullscreen();
+        }else{
+            $(this).addClass("fullscreened");
+            requestFullscreen();
+        }
+    });
+
     setInterval(function(){ 
         var t = new Date();
         h = ('0'+t.getHours()).slice(-2);
@@ -33,7 +52,7 @@ $(function(){
             $(".container").css("background-color","#"+h+""+m+""+s+"");            
         }         
     }, 100);
-    $(".question").bind("click",function(){
+    $(".question").on("click",function(){
         if($(".rgb").css("display")!="none"){
             $(".rgb").css("display","none");
             $(".hex").css("display","block");
@@ -55,5 +74,25 @@ $(function(){
                 $(".box").css("visibility","visible");  
             });          
         },1000)
+    }
+
+    function requestFullscreen() {
+      if(document.body.requestFullscreen) {
+        document.body.requestFullscreen();
+      } else if(document.body.mozRequestFullScreen) {
+        document.body.mozRequestFullScreen();
+      } else if(document.body.webkitRequestFullscreen) {
+        document.body.webkitRequestFullscreen();
+      }
+    }
+
+    function exitFullscreen() {
+        if(document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if(document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if(document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
     }
 });
