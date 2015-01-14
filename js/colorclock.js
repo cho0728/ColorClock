@@ -22,9 +22,11 @@ $(function(){
 
     $(document).on("mousemove",function(event){
         $(".fullscreen").css("visibility","visible");
+        $("body").css("cursor","default");
         setTimeout(function(){
             if(!($(".fullscreen").is(":hover"))){
                 $(".fullscreen").css("visibility","hidden");
+                $("body").css("cursor","none");
             }            
         },500)
     });
